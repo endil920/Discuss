@@ -2,8 +2,8 @@ var fs = require('fs');
 var express = require('express');
 var passport = require('poassport'), FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy({
-	clientID: 1427037610852975
-	clientSecret:5d2400c124782c3b4022504b1443b19c
+	clientID: 1427037610852975,
+	clientSecret:5d2400c124782c3b4022504b1443b19c,
 	callbackURL: http://http://endil920-discuss.herokuapp.com/home
 	},
 	function(accessToken, refreshToken, profile, done) {
