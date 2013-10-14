@@ -9,6 +9,12 @@ app.get('/', function(request, response) {
   response.send(msg);
 });
 
+app.get('/home', function(request, response) {
+  var msgBuf = fs.readFileSync('home.html');
+  var msg = msgBuf.toString('utf8');
+  response.send(msg);
+});
+
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log("Listening on " + port);
