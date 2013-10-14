@@ -1,22 +1,19 @@
 var fs = require('fs');
 var express = require('express');
 var passport = require('passport'),FacebookStrategy = require('passport-facebook').Strategy;
+var config = require('./config');
 
 passport.use(new FacebookStrategy({
-	    clientID: 1427037610852975,
-		clientSecret:4b99195332102f955d290bcf1c515c92,
+	    clientID: config.facebook.id,
+		clientSecret:config.facebook.sid,
 		callbackURL: '/auth/facebook/callback'
 		},
 	function(accessToken, refreshToken, profile, done) {
-	    User.findOrCreate(..., function(err, user) {
-		    if (err) { return done(err); }
 		    done(null, user);
-		});
-	}
-	));
+	}));
 
 var app = express.createServer(express.logger());
-app.get(/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {successRedirect: '/',
 					failureRedirect: '/login'}));
