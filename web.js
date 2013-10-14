@@ -15,7 +15,7 @@ passport.use(new FacebookStrategy({
 ));
 var app = express.createServer(express.logger());
 app.get(/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
+app.get('/auth/facebook/home',
 	passport.authenticate('facebook', {successRedirect: '/',
 					failureRedirect: '/login'}));
 
