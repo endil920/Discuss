@@ -6,7 +6,7 @@ var config = require('./config');
 passport.use(new FacebookStrategy({
 	    clientID: config.facebook.id,
 		clientSecret:config.facebook.sid,
-		callbackURL: '/auth/facebook/callback'
+		callbackURL: 'http://endil920-discuss.herokuapp.com/auth/facebook/callback'
 		},
 	function(accessToken, refreshToken, profile, done) {
 		    done(null, user);
@@ -24,6 +24,11 @@ app.get('/', function(request, response) {
   response.send(msg);
 });
 
+app.get('/auth/facebook/callback', function(request,response) {
+  var msgBug = fs.readFileSync('home.html');
+  var msg = msgBuf.toString('utf8');
+  response.send(msg);
+});
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
