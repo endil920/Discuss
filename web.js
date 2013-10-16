@@ -9,7 +9,7 @@ passport.use(new FacebookStrategy({
 		callbackURL: 'http://endil920-discuss.herokuapp.com/auth/facebook/callback'
 		},
 	function(accessToken, refreshToken, profile, done) {
-		    done(null, user);
+		    done(null,profile); 
 	}));
 
 var app = express.createServer(express.logger());
