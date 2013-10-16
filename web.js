@@ -31,7 +31,7 @@ passport.use(new FacebookStrategy({
 		callbackURL: 'http://endil920-discuss.herokuapp.com/auth/facebook/callback'
 		},
 	function(accessToken, refreshToken, profile, done) {
-		    done(null,profile); 
+		    done(null,0.toString());
 	}));
 
 var port = process.env.PORT || 8080;
