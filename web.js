@@ -3,14 +3,7 @@ var express = require('express');
 var passport = require('passport'),FacebookStrategy = require('passport-facebook').Strategy;
 var config = require('./config');
 
-passport.use(new FacebookStrategy({
-	    clientID: config.facebook.id,
-		clientSecret:config.facebook.sid,
-		callbackURL: 'http://endil920-discuss.herokuapp.com/auth/facebook/callback'
-		},
-	function(accessToken, refreshToken, profile, done) {
-		    done(null,profile); 
-	}));
+
 
 var app = express.createServer(express.logger());
 app.use(passport.initialize());
@@ -31,6 +24,15 @@ app.get('/auth/facebook/callback', function(request,response) {
   var msg = msgBuf.toString('utf8');
   response.send(msg);
 });
+
+passport.use(new FacebookStrategy({
+	    clientID: config.facebook.id,
+		clientSecret:config.facebook.sid,
+		callbackURL: 'http://endil920-discuss.herokuapp.com/auth/facebook/callback'
+		},
+	function(accessToken, refreshToken, profile, done) {
+		    done(null,profile); 
+	}));
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
